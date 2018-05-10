@@ -2,8 +2,11 @@ version: "3"
 
 services:
   db:
+    env_file: .env
     image: postgres
     container_name: psql
+    ports:
+      - "${POSTGRES_PORT}:5432"
 
   back:
     build: ./backend
@@ -12,5 +15,5 @@ services:
     volumes:
       - ./backend:/app
     ports:
-      - "3000:3000"
-    command: lein ring server-headless
+      - "${BACKEND_PORT}:${BACKEND_PORT}"
+    command: lein ring server-headless ${BACKEND_PORT}
