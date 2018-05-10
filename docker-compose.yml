@@ -4,3 +4,13 @@ services:
   db:
     image: postgres
     container_name: psql
+
+  back:
+    build: ./backend
+    depends_on:
+      - db
+    volumes:
+      - ./backend:/app
+    ports:
+      - "3000:3000"
+    command: lein ring server-headless
