@@ -9,6 +9,7 @@ services:
       - "${POSTGRES_PORT}:5432"
 
   back:
+    env_file: .env
     build: ./backend
     depends_on:
       - db
