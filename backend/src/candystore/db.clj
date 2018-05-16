@@ -9,3 +9,4 @@
      :password (System/getenv "POSTGRES_PASSWORD")})
 
 (hugsql/def-db-fns  "candystore/sql/users.sql")
+(hugsql/def-db-fns  "candystore/sql/products.sql")
