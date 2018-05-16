@@ -32,3 +32,11 @@ from the product database with barcode scanner.
 Before starting development, create a .env file (from .env-template), and fill 
 in the required info. Db-service will initialize postgres with the specified 
 settings. After .env file exists, you can run the environment with `docker-compose up`
+
+### TODO
+
+Next steps to improve and continue working:
+- read API-key from the secrets file
+- create basic database init scripts
+- create basic mock data scripts
+- think about the frontend tech ":D"
