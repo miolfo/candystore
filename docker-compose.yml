@@ -5,6 +5,8 @@ services:
     env_file: .env
     image: postgres
     container_name: psql
+    volumes:
+      - postgres:/var/lib/postgresql/data
     ports:
       - "${POSTGRES_PORT}:5432"
 
@@ -24,3 +26,5 @@ services:
     ports:
       - "${BACKEND_PORT}:${BACKEND_PORT}"
     command: lein ring server-headless ${BACKEND_PORT}
+volumes:
+  postgres:
