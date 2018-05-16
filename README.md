@@ -29,5 +29,6 @@ from the product database with barcode scanner.
 
 ## Development
 
-You can start development by pulling the repository and running the docker-compose
-up command and you have the environment up and running. 
+Before starting development, create a .env file (from .env-template), and fill 
+in the required info. Db-service will initialize postgres with the specified 
+settings. After .env file exists, you can run the environment with `docker-compose up`

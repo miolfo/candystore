@@ -9,6 +9,7 @@ services:
       - "${POSTGRES_PORT}:5432"
 
   back:
+    env_file: .env
     build: ./backend
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost/status"]
