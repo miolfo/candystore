@@ -10,6 +10,12 @@ services:
 
   back:
     build: ./backend
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/status"]
+      interval: 1m
+      timeout: 5s
+#      start_period: 1m
+      retries: 3
     depends_on:
       - db
     volumes:
