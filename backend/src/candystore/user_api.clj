@@ -7,8 +7,5 @@
     [candystore.db :as cs-db]
     [candystore.auth :as cs-auth]))
 
-(defn to-user-json-list [users]
-  (str  "[" (apply str (clojure.string/join "," (map #(json/write-str %) users))) "]"))
-
 (defroutes user-routes
-  (GET "/users" [] (to-user-json-list (apply list (cs-db/get-users-all cs-db/db)))))
+  (GET "/users" [] (json/write-str (apply vector (cs-db/get-users-all cs-db/db)))))
