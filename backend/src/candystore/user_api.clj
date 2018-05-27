@@ -8,4 +8,5 @@
     [candystore.auth :as cs-auth]))
 
 (defroutes user-routes
-  (GET "/users" [] (json/write-str (apply vector (cs-db/get-users-all cs-db/db)))))
+  (context "/users" []
+    (GET "/" [] (json/write-str (apply vector (cs-db/get-users-all cs-db/db))))))
