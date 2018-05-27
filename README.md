@@ -40,4 +40,4 @@ Next steps to improve and continue working:
 - create basic database init scripts
 - create basic mock data scripts
 - think about the frontend tech ":D"
-- find out why "result: n" -row breaks hugsql
+- Escaping user inputs in SQL queries
