@@ -1,6 +1,6 @@
 -- :name get-users-all
 -- :command :query
--- :result n
+-- :result :*
 -- :doc get all users
 SELECT * 
   FROM users;
