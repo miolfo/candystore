@@ -3,4 +3,4 @@
 -- :result :*
 -- :doc get all users
 SELECT * 
-  FROM users;
+  FROM store_users;
