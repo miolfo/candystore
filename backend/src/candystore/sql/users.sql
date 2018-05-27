@@ -4,3 +4,9 @@
 -- :doc get all users
 SELECT * 
   FROM store_users;
+
+-- :name get-users-by-id
+-- :doc get user by id
+SELECT *
+  FROM store_users
+  WHERE id = :id;

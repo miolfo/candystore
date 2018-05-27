@@ -9,4 +9,5 @@
 
 (defroutes user-routes
   (context "/users" []
-    (GET "/" [] (json/write-str (apply vector (cs-db/get-users-all cs-db/db))))))
+    (GET "/" [] (json/write-str (apply vector (cs-db/get-users-all cs-db/db))))
+    (GET "/:id" [id] (json/write-str (first (cs-db/get-users-by-id cs-db/db {:id (Integer/parseInt id)}))))))
