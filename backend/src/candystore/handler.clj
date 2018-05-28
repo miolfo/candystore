@@ -13,7 +13,7 @@
 (defroutes app-routes
   (GET "/" [] "Hello World")
   ;TODO: These token checks should be done in the middleware
-  (GET "/token-sample-check" request (cs-auth/handle-if-valid request (fn [] "correct token")))
+  (GET "/token-sample-check" request (cs-auth/handle-if-valid request (fn [] "Correct API key")))
   (GET "/status" [] "Candyshop backend running smoothly :)")
   (GET "/stats" [] (str "Candystore currently has: "
     (count (cs-db/get-users-all cs-db/db)) " users and " 
