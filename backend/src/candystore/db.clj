@@ -10,3 +10,4 @@
 
 (hugsql/def-db-fns  "candystore/sql/users.sql")
 (hugsql/def-db-fns  "candystore/sql/products.sql")
+(hugsql/def-db-fns  "candystore/sql/transactions.sql")

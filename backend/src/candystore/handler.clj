@@ -7,7 +7,8 @@
             [candystore.db :as cs-db]
             [candystore.auth :as cs-auth]
             [candystore.user-api :as cs-user]
-            [candystore.product-api :as cs-product]))
+            [candystore.product-api :as cs-product]
+            [candystore.transaction-api :as cs-transaction]))
 
 (defroutes app-routes
   (GET "/" [] "Hello World")
@@ -21,4 +22,4 @@
 
 (def app 
   (wrap-defaults 
-    (routes cs-user/user-routes cs-product/product-routes app-routes) api-defaults))
+    (routes cs-user/user-routes cs-product/product-routes cs-transaction/transaction-routes app-routes) api-defaults))
