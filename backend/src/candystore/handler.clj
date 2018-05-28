@@ -16,11 +16,11 @@
   (GET "/token-sample-check" request (cs-auth/handle-if-valid request (fn [] "Correct API key")))
   (GET "/status" [] "Candyshop backend running smoothly :)")
   (GET "/stats" [] (str "Candystore currently has: "
-    (count (cs-db/get-users-all cs-db/db)) " users and " 
-    (count (cs-db/get-products-all cs-db/db)) " products. Total transaction: "
-    (count (cs-db/get-transactions-all cs-db/db))))
+                        (count (cs-db/get-users-all cs-db/db)) " users and "
+                        (count (cs-db/get-products-all cs-db/db)) " products. Total transaction: "
+                        (count (cs-db/get-transactions-all cs-db/db))))
   (route/not-found "Not Found"))
 
-(def app 
-  (wrap-defaults 
-    (routes cs-user/user-routes cs-product/product-routes cs-transaction/transaction-routes app-routes) api-defaults))
+(def app
+  (wrap-defaults
+   (routes cs-user/user-routes cs-product/product-routes cs-transaction/transaction-routes app-routes) api-defaults))

@@ -1,6 +1,6 @@
 (ns candystore.auth
-  (:require 
-  [ring.util.response :as response]))
+  (:require
+   [ring.util.response :as response]))
 
 (defn get-correct-api-key [] (System/getenv "API_KEY"))
 
