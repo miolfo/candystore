@@ -17,7 +17,8 @@
   (GET "/status" [] "Candyshop backend running smoothly :)")
   (GET "/stats" [] (str "Candystore currently has: "
     (count (cs-db/get-users-all cs-db/db)) " users and " 
-    (count (cs-db/get-products-all cs-db/db)) " products."))
+    (count (cs-db/get-products-all cs-db/db)) " products. Total transaction: "
+    (count (cs-db/get-transactions-all cs-db/db))))
   (route/not-found "Not Found"))
 
 (def app 

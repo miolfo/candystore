@@ -7,6 +7,7 @@
       [candystore.db :as cs-db]
       [candystore.auth :as cs-auth]))
 
+; Extend timestamp type to enable json output
 (extend-type java.sql.Timestamp
   json/JSONWriter
   (-write [date out]
