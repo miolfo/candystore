@@ -5,7 +5,7 @@
 SELECT * 
   FROM store_users;
 
--- :name get-users-by-id
+-- :name get-user-by-id
 -- :doc get user by id
 SELECT *
   FROM store_users
