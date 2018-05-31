@@ -10,3 +10,7 @@ SELECT *
 SELECT *
   FROM store_transactions
   WHERE id = :id;
+
+-- :name insert-transaction :! :n
+-- :doc insert new transaction
+INSERT into store_transactions (user_id, product_id, amount) VALUES (:user_id, :product_id, :amount);

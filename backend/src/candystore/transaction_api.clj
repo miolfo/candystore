@@ -14,7 +14,7 @@
     (json/-write (str date) out)))
 
 (defn add-transaction [body]
-  (str body))
+  (str (cs-db/insert-transaction cs-db/db {:user_id 1 :product_id 1 :amount 2})))
 
 (defroutes transaction-routes
   (context "/transactions" []
