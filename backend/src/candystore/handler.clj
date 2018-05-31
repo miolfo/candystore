@@ -2,6 +2,7 @@
   (:require [compojure.core :refer :all]
             [compojure.route :as route]
             [ring.middleware.defaults :refer [wrap-defaults site-defaults api-defaults]]
+            [ring.middleware.json :refer [wrap-json-body]]
             [ring.util.response :as response]
             [clojure.data.json :as json]
             [candystore.db :as cs-db]
@@ -22,5 +23,7 @@
   (route/not-found "Not Found"))
 
 (def app
-  (wrap-defaults
-   (routes cs-user/user-routes cs-product/product-routes cs-transaction/transaction-routes app-routes) api-defaults))
+  (routes
+    (-> (routes cs-user/user-routes cs-product/product-routes cs-transaction/transaction-routes app-routes)
+      (wrap-json-body)
+      (wrap-defaults api-defaults))))
