@@ -24,6 +24,6 @@
 
 (def app
   (routes
-    (-> (routes cs-user/user-routes cs-product/product-routes cs-transaction/transaction-routes app-routes)
-      (wrap-json-body)
-      (wrap-defaults api-defaults))))
+   (-> (routes cs-user/user-routes cs-product/product-routes cs-transaction/transaction-routes app-routes)
+       (wrap-json-body)
+       (wrap-defaults api-defaults))))

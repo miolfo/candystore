@@ -4,7 +4,7 @@
   :dependencies [[org.clojure/clojure "1.9.0"]
                  [compojure "1.5.1"]
                  [ring/ring-defaults "0.2.1"]
-                 [org.postgresql/postgresql "9.4.1207"]
+                 [org.postgresql/postgresql "42.2.2.jre7"]
                  [com.layerware/hugsql "0.4.9"]
                  [org.clojure/data.json "0.2.6"]
                  [ring/ring-json "0.4.0"]]
