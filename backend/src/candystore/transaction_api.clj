@@ -13,9 +13,11 @@
   (-write [date out]
     (json/-write (str date) out)))
 
-(defn add-transaction [body]
-  (str (cs-db/insert-transaction cs-db/db {:user_id 1 :product_id 1 :amount 2})))
+(defn add-transaction [original-body]
+  (let [body (clojure.walk/keywordize-keys original-body)]
+    (cs-db/insert-transaction cs-db/db body)))
 
+;(cs-db/insert-transaction cs-db/db {:user_id 1 :product_id 1 :amount 2}
 (defroutes transaction-routes
   (context "/transactions" []
     (GET "/" [] (json/write-str (apply vector (cs-db/get-transactions-all cs-db/db))))
