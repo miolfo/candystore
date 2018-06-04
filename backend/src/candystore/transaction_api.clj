@@ -16,9 +16,8 @@
 (defn add-product-transaction [transaction]
   (str "product transaction (not yet implemented)"))
 
-(defn add-amount-transaction [original-body]
-  (let [body (clojure.walk/keywordize-keys original-body)]
-    (cs-db/insert-transaction cs-db/db (assoc body :product_id nil))))
+(defn add-amount-transaction [transaction]
+    (cs-db/insert-transaction cs-db/db (assoc transaction :product_id nil)))
 
 (defn add-transaction [original-body]
   (let [body (clojure.walk/keywordize-keys original-body)]
