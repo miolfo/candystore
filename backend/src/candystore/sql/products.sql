@@ -5,7 +5,7 @@
 SELECT * 
   FROM store_products;
 
--- :name get-product-by-id
+-- :name get-product-by-id :? :1
 -- :doc get product by id
 SELECT *
   FROM store_products

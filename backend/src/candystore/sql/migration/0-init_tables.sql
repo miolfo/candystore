@@ -15,4 +15,4 @@ create table if not exists store_transactions(
   transaction_time timestamp not null default now(),
   user_id int not null,
   product_id int,
-  amount int not null);
+  amount real not null);

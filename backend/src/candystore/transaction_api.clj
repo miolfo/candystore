@@ -13,15 +13,18 @@
   (-write [date out]
     (json/-write (str date) out)))
 
+(defn get-product-price [transaction]
+  (:price (cs-db/get-product-by-id cs-db/db {:id (:product_id transaction)})))
+
 (defn add-product-transaction [transaction]
-  (str "product transaction (not yet implemented)"))
+  (str (cs-db/insert-transaction cs-db/db (assoc transaction :amount (get-product-price transaction)))))
 
 (defn add-amount-transaction [transaction]
-    (cs-db/insert-transaction cs-db/db (assoc transaction :product_id nil)))
+  (str (cs-db/insert-transaction cs-db/db (assoc transaction :product_id nil))))
 
 (defn add-transaction [original-body]
   (let [body (clojure.walk/keywordize-keys original-body)]
-    (if (contains? body :product_id) 
+    (if (contains? body :product_id)
       (add-product-transaction body)
       (add-amount-transaction body))))
 
