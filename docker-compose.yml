@@ -2,6 +2,7 @@ version: "3"
 
 services:
   db:
+    container_name: candystore-db
     env_file: .env
     image: postgres
     container_name: psql
@@ -11,10 +12,11 @@ services:
       - "${POSTGRES_PORT}:5432"
 
   back:
+    container_name: candystore-back
     env_file: .env
     build: ./backend
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost/status"]
+      test: ["CMD", "curl", "-f", "http://localhost:${BACKEND_PORT}/status"]
       interval: 1m
       timeout: 5s
 #      start_period: 1m
@@ -26,5 +28,22 @@ services:
     ports:
       - "${BACKEND_PORT}:${BACKEND_PORT}"
     command: lein ring server-headless ${BACKEND_PORT}
+  
+  front:
+    container_name: candystore-front
+    env_file: .env
+    build: ./front-sample
+    depends_on:
+      - back
+    volumes:
+      - ./front-sample:/app
+      - /app/node_modules
+    ports:
+      - "${FRONTEND_PORT}:3000"
+    environment:
+      - NODE_ENV=development
+      - CHOKIDAR_USEPOLLING=true
+    command: npm start
+
 volumes:
   postgres:
