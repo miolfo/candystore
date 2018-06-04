@@ -14,7 +14,7 @@ services:
     env_file: .env
     build: ./backend
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost/status"]
+      test: ["CMD", "curl", "-f", "http://localhost:${BACKEND_PORT}/status"]
       interval: 1m
       timeout: 5s
 #      start_period: 1m
