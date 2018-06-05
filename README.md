@@ -41,5 +41,4 @@ Dockerfiles are taken into images.
 
 Next steps to improve and continue working:
 - read API-key from the secrets file
-- create basic mock data scripts
 - Escaping user inputs in SQL queries
