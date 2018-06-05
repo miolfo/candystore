@@ -11,6 +11,14 @@ SELECT *
   FROM store_users
   WHERE id = :id;
 
+-- :name get-user-by-payment-option :? :1
+-- :doc get user by payment option
+SELECT fname, lname, balance, payment_option
+  FROM store_users
+  LEFT JOIN store_payment_options
+  ON store_payment_options.u_id = store_users.id
+  WHERE payment_option like :payment_option;
+
 -- :name update-user-balance :! :n
 -- :doc update user blanace
 UPDATE store_users

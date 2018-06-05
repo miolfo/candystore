@@ -1,0 +1,2 @@
+insert into store_payment_options (u_id, payment_option, description) values (1, 'derp', 'passphrase');
+insert into store_payment_options (u_id, payment_option, description) values (3, '37', 'membership number');
