@@ -40,6 +40,6 @@ Dockerfiles are taken into images.
 ### TODO
 
 Next steps to improve and continue working:
-- read API-key from the secrets file
 - create basic mock data scripts
-- Escaping user inputs in SQL queries
+- return sensible data after posting transactions
+- error handling when posting invalid transactions
