@@ -7,6 +7,8 @@ services:
     image: postgres:10.4
     container_name: psql
     volumes:
+      - ./scripts/sql/0-init_tables.sql:/docker-entrypoint-initdb.d/1-tables.sql
+      - ./scripts/sql/mockdata:/mockdata
       - postgres:/var/lib/postgresql/data
     ports:
       - "${POSTGRES_PORT}:5432"
