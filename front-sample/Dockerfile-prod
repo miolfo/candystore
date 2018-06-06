@@ -1,0 +1,31 @@
+# Multistage build image for production
+
+# Build stage for running react-scripts build
+FROM node:9.11.1 as builder
+
+RUN ["mkdir", "-p", "/app"]
+WORKDIR /app
+
+# Add node_modules/.bin to path to have the ability
+# to run binaries from copied modules
+ENV PATH /app/node_modules/.bin:$PATH
+
+COPY package.json /app/package.json
+RUN ["npm", "install"]
+RUN ["npm", "install", "react-scripts@1.1.4", "-g"]
+
+# Copy application files to work directory and run build script
+COPY . /app
+RUN ["npm", "run", "build"]
+
+# Stage for running the built production application
+
+# Nginx to serve the static website
+FROM nginx:1.14.0-alpine
+
+# Copy built files from build stage to default nginx serve location
+COPY --from=builder /app/build /usr/share/nginx/html
+
+# Expose default http port and start nginx 
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
