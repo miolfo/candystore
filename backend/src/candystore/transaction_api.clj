@@ -14,13 +14,13 @@
   (-write [date out]
     (json/-write (str date) out)))
 
+(defn get-product-price [transaction]
+  (:price (cs-db/get-product-by-id cs-db/db {:id (:product_id transaction)})))
+
 (defn get-final-transaction [transaction]
   (if (contains? transaction :product_id)
     (assoc transaction :amount (get-product-price transaction))
     (assoc transaction :product_id nil)))
-
-(defn get-product-price [transaction]
-  (:price (cs-db/get-product-by-id cs-db/db {:id (:product_id transaction)})))
 
 (defn update-user-balance [transaction tx]
   (let [old-balance (:balance (cs-db/get-user-balance tx {:id (:user_id transaction)}))]
