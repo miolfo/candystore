@@ -26,7 +26,6 @@ class ProductList extends React.Component {
           <div key={product.id}>{product.name}</div>
         )
       })
-      console.log('mapped products: ' + JSON.stringify(mappedProducts));
       this.setState({products: mappedProducts});
     })
     console.log("state " + this.state.products);
@@ -44,20 +43,3 @@ class ProductList extends React.Component {
 }
 
 export default ProductList;
-
-{/*
-// export default class ProductList extends React.Component {
-//  render() {
-//        return (
-//            <div className="product-list">
-//                <h2> List of products for {this.props.name} </h2>
-//                <ul>
-//                    <li>Item1</li>
-//                    <li>Item2</li>
-//                    <li>Item3</li>
-//                </ul>
-//            </div>
-//        );
-//    }
-// */
-}
