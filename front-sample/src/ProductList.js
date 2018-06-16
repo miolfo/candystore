@@ -9,7 +9,9 @@ class ProductList extends React.Component {
     }
 
   componentDidMount() {
-    fetch('http://localhost:3000/products/all', {
+    const apiUrl = process.env.REACT_APP_API_URL || 'http://back';
+    const apiPort = process.env.REACT_APP_API_PORT || '3333';
+    fetch(apiUrl + ':' + apiPort + '/products/all', {
       method: 'GET',
       headers: {
         Accept: 'application/json'
