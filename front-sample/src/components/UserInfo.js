@@ -2,18 +2,34 @@ import React from 'react';
 import './UserInfo.css';
 
 class UserInfo extends React.Component {
-  constructor() {
-      super();
+  constructor(props) {
+      super(props);
       this.state = {
-          userInfo: {name: 'nobody'},
+          userInfo: {name: props.id || 'nobody'},
+          id: '',
           content: []
       };
+
+      this.updateUser = this.updateUser.bind(this);
+    }
+    
+    componentWillReceiveProps(nextProps) {
+      console.log("nextProps.id: " + nextProps.id);
+      if (this.state.id !== nextProps.id) {
+        this.setState({id: nextProps.id}, () => {
+          this.updateUser();
+        });
+      }
     }
 
-    componentDidMount() {      
+    componentDidMount() {
+      this.updateUser();
+    }
+
+    updateUser() {
       const apiUrl = process.env.REACT_APP_API_URL || 'http://back';
       const apiPort = process.env.REACT_APP_API_PORT || '3333';
-      fetch(apiUrl + ':' + apiPort + '/users/id/1', {
+      fetch(apiUrl + ':' + apiPort + '/users/id/' + (this.state.id || 1), {
         method: 'GET',
         headers: {
           Accept: 'application/json'
@@ -27,7 +43,7 @@ class UserInfo extends React.Component {
         console.log('data contained in response: ' + JSON.stringify(info));
         let userInfo = {name: info.fname + info.lname, balance: info.balance, fname: info.fname, lname: info.lname};
         console.log('userinfo: ' + JSON.stringify(userInfo));
-        let output = <span>Balance: {userInfo.balance} </span>;
+        let output = <div>Balance: {userInfo.balance} </div>;
         this.setState({userInfo: userInfo, content: output});
       })
       console.log("state " + this.state);

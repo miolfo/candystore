@@ -1,0 +1,8 @@
+.InputField {
+    max-width: 35%;
+    height: 300px;
+    float: left;
+    padding: 10px;
+  
+    background-color: lightslategray;  
+}
