@@ -41,7 +41,7 @@ services:
       - db
     volumes:
       - ./front-sample:/app
-      - /app/node_modules
+      - ./front-sample/node_modules:/app/node_modules
     ports:
       - "${FRONTEND_PORT}:3000"
     environment:
