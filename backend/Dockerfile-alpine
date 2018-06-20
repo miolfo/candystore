@@ -1,5 +1,5 @@
-# This dockerfile will be used when invoking
-# docker-compose build or up
+# Basically only difference for now is the base image
+# (This one uses alpine as base)
 FROM clojure:lein-2.8.1-alpine
 RUN mkdir -p /app
 WORKDIR /app
