@@ -1,7 +1,8 @@
 create table if not exists store_users(
   id serial primary key not null,
-  fname char(30) not null,
-  lname char(50) not null,
+  fname varchar(30) not null,
+  lname varchar(50) not null,
+  nickname varchar(50),
   balance real);
 
 create table if not exists store_products(
