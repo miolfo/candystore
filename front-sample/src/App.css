@@ -26,3 +26,30 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.ProductList {
+  max-width: 30%;
+  height: 300px;
+  float: left;
+  padding: 10px;
+
+  background-color: lightblue;
+}
+
+.UserInfo {
+  max-width: 20%;
+  height: 300px;
+  float: left;
+  padding: 10px;
+
+  background-color: lightsalmon;  
+}
+
+.AllUserInfo {
+  max-width: 30%;
+  height: 300px;
+  float: left;
+  padding: 10px;
+
+  background-color: lightgreen;  
+}
