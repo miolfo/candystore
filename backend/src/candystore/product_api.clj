@@ -12,7 +12,6 @@
     (GET "/" [] (json/write-str (apply vector (cs-db/get-products-all cs-db/db))))
     (GET "/all" []
       {:status 200
-      :headers {"Content-Type" "application/json; charset=utf-8" "Access-Control-Allow-Origin" "*"}
-      :body (json/write-str {:products (apply vector (cs-db/get-products-all cs-db/db))})
-      })
+       :headers {"Content-Type" "application/json; charset=utf-8" "Access-Control-Allow-Origin" "*"}
+       :body (json/write-str {:products (apply vector (cs-db/get-products-all cs-db/db))})})
     (GET "/:id" [id] (json/write-str (first (cs-db/get-product-by-id cs-db/db {:id (Integer/parseInt id)}))))))
