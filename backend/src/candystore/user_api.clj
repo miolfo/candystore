@@ -10,5 +10,6 @@
 (defroutes user-routes
   (context "/users" []
     (GET "/" [] (json/write-str (apply vector (cs-db/get-users-all cs-db/db))))
+    (GET "/all" []  (json/write-str {:users (apply vector (cs-db/get-users-all cs-db/db))}))
     (GET "/id/:id" [id] (json/write-str (cs-db/get-user-by-id cs-db/db {:id (Integer/parseInt id)})))
     (GET "/payment-option/:option" [option] (json/write-str (cs-db/get-user-by-payment-option cs-db/db {:payment_option option})))))
