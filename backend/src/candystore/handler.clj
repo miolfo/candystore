@@ -22,8 +22,16 @@
                         (count (cs-db/get-transactions-all cs-db/db))))
   (route/not-found "Not Found"))
 
+(defn wrap-json-content-type [handler]
+  (fn [request]
+    (let [response (handler request)]
+      (-> response
+          (assoc-in [:headers "Content-Type"] "application/json")
+          (assoc-in [:headers "Access-Control-Allow-Origin"] "*")))))
+
 (def app
   (routes
    (-> (routes cs-user/user-routes cs-product/product-routes cs-transaction/transaction-routes app-routes)
+       (wrap-json-content-type)
        (wrap-json-body)
        (wrap-defaults api-defaults))))
