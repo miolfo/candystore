@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import ProductList from './ProductList.js';
-import UserInfo from './UserInfo.js';
-import AllUserInfo from './AllUserInfo.js';
+import ProductList from './components/ProductList.js';
+import UserInfo from './components//UserInfo.js';
+import AllUserInfo from './components//AllUserInfo.js';
 
 class App extends Component {
   render() {

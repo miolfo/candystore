@@ -1,0 +1,8 @@
+.UserInfo {
+    max-width: 20%;
+    height: 300px;
+    float: left;
+    padding: 10px;
+  
+    background-color: lightsalmon;  
+}
