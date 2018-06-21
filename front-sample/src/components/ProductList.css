@@ -3,6 +3,9 @@
     height: 300px;
     float: left;
     padding: 10px;
+    margin: 1px;
   
-    background-color: lightblue;
+    background-color: lightslategray;
+
+    opacity: 0.95;
 }

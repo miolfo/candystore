@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import logo from './logo.svg';
 import './App.css';
 import ProductList from './components/ProductList.js';
@@ -7,49 +9,48 @@ import AllUserInfo from './components/AllUserInfo.js';
 import InputField from './components/InputField.js';
 
 class App extends Component {
+  userQueryNotify = (id) => toast("User Query for User ID: " + id);
+
   constructor() {
     super();
     this.state = {
-      id: ''
+      userId: '',
+      products: []
     };
 
-    this.test = this.test.bind(this);
+    this.updateUserId = this.updateUserId.bind(this);
+    this.userInfoUpdated = this.userInfoUpdated.bind(this);
   }
 
-  handleChange(event) {
-    this.setState({id: event.target.value });
+  updateUserId(event, data) {
+    this.setState({userId: data});
   }
 
-  test(event, data) {
-    console.log(data);
-    console.log(event);
-    this.setState({id: data});
+  userInfoUpdated(id) {
+    this.userQueryNotify(id);
   }
 
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Candystore v0.1</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-        <div>
+        <div className="DivContainer">
           <div className="ProductList">
             <ProductList name="messi market" />
           </div>
           <div className="UserInfo">
-            <UserInfo id={this.state.id}/>
+            <UserInfo id={this.state.userId} userInfoUpdated={this.userInfoUpdated}/>
           </div>
           <div className="AllUserInfo">
             <AllUserInfo />
           </div>
           <div className="InputField">
-            <InputField id={this.state.id} test={this.test}/>
+            <InputField id={this.state.userId} test={this.updateUserId}/>
+          </div>
+          <div className="ShoppingCart">
+            <ShoppingCart userid={this.state.userId} products={this.state.products}/>
           </div>
         </div>
+        <ToastContainer />
       </div>
     );
   }

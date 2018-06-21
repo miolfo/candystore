@@ -1,8 +1,12 @@
 .AllUserInfo {
+    width: 26%;
     max-width: 35%;
     height: 300px;
     float: left;
     padding: 10px;
+    margin: 1px;
   
-    background-color: lightgreen;  
+    background-color: lightslategray;
+
+    opacity: 0.95;
 }

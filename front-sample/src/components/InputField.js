@@ -6,13 +6,15 @@ export default class InputField extends Component {
         super(props);
         this.state = {
             content: [],
-            value: ''
+            userId: '',
+            productId: ''
         };
 
-        this.handleChanged = this.handleChanged.bind(this);
+        this.handleChangedUserId = this.handleChangedUserId.bind(this);
+        this.handleChangedProductId = this.handleChangedProductId.bind(this);
     }
 
-    handleChanged(event) {
+    handleChangedUserId(event) {
         this.setState({value: event.target.value});
     }
 
@@ -20,10 +22,15 @@ export default class InputField extends Component {
         return(
             <form>
                 <label>
-                    Input:
-                    <input type="text" value={this.state.value} onChange={this.handleChanged}/>
+                    User ID:
+                    <input type="text" value={this.state.userId} onChange={this.handleChangedUserId}/>
                 </label>
-                <input type="button" value="Submit" onClick={(e) => this.props.test(e, this.state.value)} />
+                <input type="button" value="Submit" onClick={(e) => this.props.test(e, this.state.userId)} />
+                <label>
+                    Product ID:
+                    <input type="text" value={this.state.productId} onChange={this.handleChangedProductId} />
+                </label>
+                <input type="button" value="Submit" onClick={(e) => this.props.addProduct(e, this.state.productId)} />
             </form>
         );
     }

@@ -23,13 +23,12 @@ class UserInfo extends React.Component {
     }
 
     componentDidMount() {
-      this.updateUser();
     }
 
     updateUser() {
       const apiUrl = process.env.REACT_APP_API_URL || 'http://back';
       const apiPort = process.env.REACT_APP_API_PORT || '3333';
-      fetch(apiUrl + ':' + apiPort + '/users/id/' + (this.state.id || 1), {
+      fetch(apiUrl + ':' + apiPort + '/users/id/' + (this.state.id || 0), {
         method: 'GET',
         headers: {
           Accept: 'application/json'
@@ -47,6 +46,7 @@ class UserInfo extends React.Component {
         this.setState({userInfo: userInfo, content: output});
       })
       console.log("state " + this.state);
+      this.props.userInfoUpdated(this.state.id);
     }
 
 
