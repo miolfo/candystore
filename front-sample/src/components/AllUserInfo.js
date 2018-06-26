@@ -6,7 +6,7 @@ import './AllUserInfo.css';
 
 const apiUrl = process.env.REACT_APP_API_URL || 'http://back';
 const apiPort = process.env.REACT_APP_API_PORT || '3333';
-const apiEndpoint = '/users/all';
+//const apiEndpoint = '/users/all';
 
 const AllUserInfo = ({ data, isLoading, error, props }) => {
   const users = data.users || [];
@@ -48,4 +48,4 @@ const AllUserInfo = ({ data, isLoading, error, props }) => {
   );
 }
 
-export default withFetching(apiUrl + ':' + apiPort, apiEndpoint)(AllUserInfo);
+export default withFetching(apiUrl + ':' + apiPort)(AllUserInfo);

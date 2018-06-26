@@ -1,8 +1,8 @@
 .ProductList {
-    max-width: 30%;
-    height: 300px;
-    float: left;
-    padding: 10px;
-  
-    background-color: lightblue;
+  max-width: 30%;
+  height: 300px;
+  float: left;
+  padding: 10px;
+
+  background-color: lightblue;
 }

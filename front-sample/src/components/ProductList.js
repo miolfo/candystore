@@ -5,7 +5,7 @@ import './ProductList.css';
 
 const apiUrl = process.env.REACT_APP_API_URL || 'http://back';
 const apiPort = process.env.REACT_APP_API_PORT || '3333';
-const apiEndpoint = '/products/all';
+//const apiEndpoint = '/products/all';
 
 const ProductList = ({ data, isLoading, error, props }) => {
   const products = data.products || [];
@@ -39,4 +39,4 @@ const ProductList = ({ data, isLoading, error, props }) => {
   );
 }
 
-export default withFetching(apiUrl + ':' + apiPort, apiEndpoint)(ProductList);
+export default withFetching(apiUrl + ':' + apiPort)(ProductList);

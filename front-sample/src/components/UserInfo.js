@@ -4,7 +4,7 @@ import { withFetching } from './WithFetching.js';
 
 const apiUrl = process.env.REACT_APP_API_URL || 'http://back';
 const apiPort = process.env.REACT_APP_API_PORT || '3333';
-const apiEndpoint = '/users/id/1';
+//const apiEndpoint = '/users/id/1';
 
 const UserInfo = ({ data, isLoading, error, props}) => {
   const info = data || [];
@@ -26,4 +26,4 @@ const UserInfo = ({ data, isLoading, error, props}) => {
   );
 }
 
-export default withFetching(apiUrl + ':' + apiPort, apiEndpoint)(UserInfo);
+export default withFetching(apiUrl + ':' + apiPort)(UserInfo);

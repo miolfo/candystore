@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export const withFetching = (url, query) => (Comp) =>
+export const withFetching = (url) => (Comp) =>
   class WithFetching extends Component {
     constructor(props) {
       super(props);
@@ -13,10 +13,20 @@ export const withFetching = (url, query) => (Comp) =>
       };
     }
 
-    componentDidMount() {
-      this.setState({ isLoading: true });
+    componentWillReceiveProps(nextProps) {
+      console.log('NEW PROPS!!!!! ');
+      console.log(nextProps);
+      this.fetchData();
+    }
 
-      fetch(url + query, {
+    componentDidMount() {
+      this.fetchData();
+    }
+
+    fetchData() {
+      this.setState({ isLoading: true });
+      console.log(this.props);
+      fetch(url + this.props.apiEndpoint, {
         method: 'GET',
         headers: {
           Accept: 'application/json'
