@@ -1,68 +1,51 @@
 import React from 'react';
 import ReactTable from 'react-table';
+import { withFetching } from './WithFetching.js';
 import 'react-table/react-table.css';
 import './AllUserInfo.css';
 
-class AllUserInfo extends React.Component {
-  constructor() {
-      super();
-      this.state = {
-          content: []
-      };
-    }
+const apiUrl = process.env.REACT_APP_API_URL || 'http://back';
+const apiPort = process.env.REACT_APP_API_PORT || '3333';
+const apiEndpoint = '/users/all';
 
-    componentDidMount() {
-      const columns = [{
-          Header: 'First Name',
-          accessor: 'fname'
-      }, {
-          Header: 'Last Name',
-          accessor: 'lname'
-      }, {
-          Header: 'Balance',
-          accessor: 'balance'
-      }]
+const AllUserInfo = ({ data, isLoading, error, props }) => {
+  const users = data.users || [];
+  const columns = [{
+    Header: 'First Name',
+    accessor: 'fname'
+}, {
+    Header: 'Last Name',
+    accessor: 'lname'
+}, {
+    Header: 'Balance',
+    accessor: 'balance'
+}]
+  
+  const allUserInfo = <ReactTable 
+          data={users}
+          columns={columns}
+          minRows={5}
+          showPagination={false}
+          defaultSorted={[
+            {
+              id: 'balance'
+            }
+          ]} />;
 
-      const apiUrl = process.env.REACT_APP_API_URL || 'http://back';
-      const apiPort = process.env.REACT_APP_API_PORT || '3333';
-      fetch(apiUrl + ':' + apiPort + '/users/all', {
-        method: 'GET',
-        headers: {
-          Accept: 'application/json'
-        }
-      }).then(function(response) {
-        return response.json();
-      }, function(error) {
-        console.log("error: " + error.message);
-      }).then(data => {
-        let userData = data.users;
-        console.log('data contained in allusers response: ' + JSON.stringify(userData));
-        
-        let output = <ReactTable
-                        data={userData}
-                        columns={columns}
-                        minRows={5}
-                        showPagination={false}
-                        defaultSorted={[
-                            {
-                                id: 'balance'
-                            }
-                        ]} />;
-        
-        this.setState({content: output});
-        //console.log(this.state);
-      })
-    }
+  if (error) {
+    return <p>{error.message}</p>;
+  }
 
+  if (isLoading) {
+    return <p>Loading ...</p>;
+  }
 
-    render() {
-      return (
-        <div>
-          <strong>Wall of Shame</strong>
-          {this.state.content}
-        </div>
-      )
-    }
+  return (
+    <div>
+      <strong>{props.name}</strong>
+      {allUserInfo}
+    </div>
+  );
 }
 
-export default AllUserInfo;
+export default withFetching(apiUrl + ':' + apiPort, apiEndpoint)(AllUserInfo);

@@ -3,3 +3,5 @@ data/
 .secrets
 .env
 .m2
+.nginx-prod-config
+*.sqlite

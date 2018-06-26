@@ -1,47 +1,29 @@
 import React from 'react';
 import './UserInfo.css';
+import { withFetching } from './WithFetching.js';
 
-class UserInfo extends React.Component {
-  constructor() {
-      super();
-      this.state = {
-          userInfo: {name: 'nobody'},
-          content: []
-      };
-    }
+const apiUrl = process.env.REACT_APP_API_URL || 'http://back';
+const apiPort = process.env.REACT_APP_API_PORT || '3333';
+const apiEndpoint = '/users/id/1';
 
-    componentDidMount() {      
-      const apiUrl = process.env.REACT_APP_API_URL || 'http://back';
-      const apiPort = process.env.REACT_APP_API_PORT || '3333';
-      fetch(apiUrl + ':' + apiPort + '/users/id/1', {
-        method: 'GET',
-        headers: {
-          Accept: 'application/json'
-        }
-      }).then(function(response) {
-        return response.json();
-      }, function(error) {
-        console.log("error: " + error.message);
-      }).then(data => {
-        let info = data;
-        console.log('data contained in response: ' + JSON.stringify(info));
-        let userInfo = {name: info.fname + info.lname, balance: info.balance, fname: info.fname, lname: info.lname};
-        console.log('userinfo: ' + JSON.stringify(userInfo));
-        let output = <span>Balance: {userInfo.balance} </span>;
-        this.setState({userInfo: userInfo, content: output});
-      })
-      console.log("state " + this.state);
-    }
+const UserInfo = ({ data, isLoading, error, props}) => {
+  const info = data || [];
 
+  if (error) {
+    return <p>{error.message}</p>;
+  }
 
-    render() {
-      return (
-        <div>
-          <strong>User information for {this.state.userInfo.name}</strong>
-          {this.state.content}
-        </div>
-      )
-    }
+  if (isLoading) {
+    return <p>Loading ...</p>;
+  }
+  
+  return (
+    <div>
+      <strong>User information for {info.fname} {info.lname}</strong>
+      <br />
+      <span>Balance: {info.balance} </span>
+    </div>
+  );
 }
 
-export default UserInfo;
+export default withFetching(apiUrl + ':' + apiPort, apiEndpoint)(UserInfo);
