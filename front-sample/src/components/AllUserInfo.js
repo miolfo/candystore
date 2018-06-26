@@ -50,8 +50,8 @@ class AllUserInfo extends React.Component {
                         ]} />;
         
         this.setState({content: output});
+        //console.log(this.state);
       })
-      console.log("state " + this.state);
     }
 
 

@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import ProductList from './components/ProductList.js';
-import UserInfo from './components//UserInfo.js';
+//import ProductList from './components/ProductList.js';
+import ProductListv2 from './components/ProductListv2.js';
+//import UserInfo from './components//UserInfo.js';
+import UserInfov2 from './components/UserInfov2.js';
 import AllUserInfo from './components//AllUserInfo.js';
+
+//let userinfo2 = UserInfov2('localhost:3333','/users/id/1');
 
 class App extends Component {
   render() {
@@ -18,10 +22,10 @@ class App extends Component {
         </p>
         <div>
           <div className="ProductList">
-            <ProductList name="messi market" />
+            <ProductListv2 name="messi market" />
           </div>
           <div className="UserInfo">
-            <UserInfo />
+            <UserInfov2 />
           </div>
           <div className="AllUserInfo">
             <AllUserInfo />
