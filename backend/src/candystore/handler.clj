@@ -37,4 +37,4 @@
                  :access-control-allow-headers ["Content-Type"])
        (wrap-json-content-type)
        (wrap-json-body)
-       (wrap-defaults (assoc-in api-defaults [:security :anti-forgery] false)))))
+       (wrap-defaults api-defaults))))
