@@ -8,7 +8,9 @@
                  [com.layerware/hugsql "0.4.9"]
                  [org.clojure/data.json "0.2.6"]
                  [ring/ring-json "0.4.0"]
-                 [ring-cors "0.1.12"]]
+                 [ring-cors "0.1.12"]
+                 [log4j "1.2.17"]
+                 [org.clojure/tools.logging "0.4.1"]]
   :plugins [[lein-ring "0.9.7"]]
   :ring {:handler candystore.handler/app}
   :profiles

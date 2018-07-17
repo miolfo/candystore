@@ -5,3 +5,4 @@ data/
 .m2
 .nginx-prod-config
 *.sqlite
+backend/log
