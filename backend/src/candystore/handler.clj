@@ -27,8 +27,7 @@
   (fn [request]
     (let [response (handler request)]
       (-> response
-          (assoc-in [:headers "Content-Type"] "application/json")
-          (assoc-in [:headers "Access-Control-Allow-Origin"] "*")))))
+          (assoc-in [:headers "Content-Type"] "application/json")))))
 
 (def app
   (routes
@@ -36,6 +35,6 @@
       (wrap-cors :access-control-allow-origin #".*"
                  :access-control-allow-methods [:get :put :post]
                  :access-control-allow-headers ["Content-Type"])
-       ;(wrap-json-content-type)
+       (wrap-json-content-type)
        (wrap-json-body)
        (wrap-defaults (assoc-in api-defaults [:security :anti-forgery] false)))))
