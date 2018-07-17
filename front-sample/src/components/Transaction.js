@@ -33,6 +33,7 @@ export default class Transaction extends Component {
         amount: parseFloat(this.state.amount)
       }
     }
+
     fetch(apiUrl + ':' + apiPort + apiEndpoint, {
       method: 'POST',
       headers: {
@@ -40,7 +41,8 @@ export default class Transaction extends Component {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(body)
-    });
+    }).then(response => window.location.reload()
+    ).catch(err => console.error(err));
   }
 
   inputChanged(event) {
