@@ -7,7 +7,8 @@
                  [org.postgresql/postgresql "42.2.2.jre7"]
                  [com.layerware/hugsql "0.4.9"]
                  [org.clojure/data.json "0.2.6"]
-                 [ring/ring-json "0.4.0"]]
+                 [ring/ring-json "0.4.0"]
+                 [ring-cors "0.1.12"]]
   :plugins [[lein-ring "0.9.7"]]
   :ring {:handler candystore.handler/app}
   :profiles

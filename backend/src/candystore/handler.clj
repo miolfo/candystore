@@ -4,6 +4,7 @@
             [ring.middleware.defaults :refer [wrap-defaults site-defaults api-defaults]]
             [ring.middleware.json :refer [wrap-json-body]]
             [ring.util.response :as response]
+            [ring.middleware.cors :refer [wrap-cors]]
             [clojure.data.json :as json]
             [candystore.db :as cs-db]
             [candystore.auth :as cs-auth]
@@ -32,6 +33,9 @@
 (def app
   (routes
    (-> (routes cs-user/user-routes cs-product/product-routes cs-transaction/transaction-routes app-routes)
-       (wrap-json-content-type)
+      (wrap-cors :access-control-allow-origin #".*"
+                 :access-control-allow-methods [:get :put :post]
+                 :access-control-allow-headers ["Content-Type"])
+       ;(wrap-json-content-type)
        (wrap-json-body)
-       (wrap-defaults api-defaults))))
+       (wrap-defaults (assoc-in api-defaults [:security :anti-forgery] false)))))
