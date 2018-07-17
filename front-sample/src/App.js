@@ -3,6 +3,7 @@ import './App.css';
 import ProductList from './components/ProductList.js';
 import UserInfo from './components//UserInfo.js';
 import AllUserInfo from './components//AllUserInfo.js';
+import Transaction from './components/Transaction';
 
 //let userinfo2 = UserInfov2('localhost:3333','/users/id/1');
 
@@ -27,6 +28,9 @@ class App extends Component {
           <div className="AllUserInfo">
             <AllUserInfo name="Wall of Shame" />
           </div>
+        </div>
+        <div>
+          <Transaction/>
         </div>
       </div>
     );
