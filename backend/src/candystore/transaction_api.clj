@@ -6,7 +6,8 @@
             [clojure.data.json :as json]
             [candystore.db :as cs-db]
             [candystore.auth :as cs-auth]
-            [clojure.java.jdbc :as jdbc]))
+            [clojure.java.jdbc :as jdbc]
+            [clojure.tools.logging :as log]))
 
 ; Extend timestamp type to enable json output
 (extend-type java.sql.Timestamp
@@ -30,6 +31,7 @@
   (let [body (clojure.walk/keywordize-keys original-body)
         final-transaction (get-final-transaction body)
         old-balance (:balance (cs-db/get-user-balance cs-db/db {:id (:user_id final-transaction)}))]
+    (log/info "Adding transaction " final-transaction)
     (str (jdbc/with-db-transaction [tx cs-db/db]
            (cs-db/insert-transaction tx final-transaction)
            (cs-db/update-user-balance tx {:id (:user_id final-transaction) :balance (- old-balance (:amount final-transaction))})))))
