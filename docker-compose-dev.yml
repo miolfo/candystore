@@ -1,0 +1,57 @@
+version: "3"
+
+services:
+  db:
+    container_name: candystore-db
+    env_file: .env
+    image: postgres:10.4
+    container_name: psql
+    volumes:
+      - ./scripts/sql/0-init_tables.sql:/docker-entrypoint-initdb.d/1-tables.sql
+      - ./scripts/sql/mockdata:/mockdata
+      - postgres:/var/lib/postgresql/data
+    ports:
+      - "${POSTGRES_PORT}:5432"
+
+  back:
+    container_name: candystore-back
+    env_file: .env
+    image: candystore-back:dev
+    build: ./backend
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:${BACKEND_PORT}/status"]
+      interval: 1m
+      timeout: 5s
+#      start_period: 1m
+      retries: 3
+    depends_on:
+      - db
+    volumes:
+      - ./backend:/app
+      - ./.m2:/root/.m2
+    ports:
+      - "${BACKEND_PORT}:${BACKEND_PORT}"
+    command: lein ring server-headless ${BACKEND_PORT}
+  
+  front:
+    container_name: candystore-front-dev
+    env_file: .env
+    image: candystore-front:dev
+    build: 
+      context: ./front-sample
+      dockerfile: Dockerfile-dev
+    depends_on:
+      - back
+      - db
+    volumes:
+      - ./front-sample:/app
+      - ./front-sample/node_modules:/app/node_modules
+    ports:
+      - "${FRONTEND_PORT}:3000"
+    environment:
+      - NODE_ENV=development
+      - CHOKIDAR_USEPOLLING=true
+    command: start-dev
+
+volumes:
+  postgres:

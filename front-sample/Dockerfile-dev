@@ -1,0 +1,13 @@
+FROM node:9.11.1
+
+RUN mkdir -p /app
+WORKDIR /app
+
+RUN npm install react-scripts@1.1.4 -g && \
+  npm cache clean --force
+
+ENV PATH /app/node_modules/.bin:$PATH
+
+ENTRYPOINT ["/usr/local/bin/npm", "run"]
+
+CMD ["start-dev"]
