@@ -37,13 +37,13 @@ services:
     container_name: candystore-front
     env_file: .env
     image: candystore-front
-    build: ./front-sample
+    build: ./frontend
     depends_on:
       - back
       - db
     volumes:
-      - ./front-sample:/app
-      - ./front-sample/node_modules:/app/node_modules
+      - ./frontend:/app
+      - ./frontend/node_modules:/app/node_modules
     ports:
       - "${FRONTEND_PORT}:3000"
     environment:
