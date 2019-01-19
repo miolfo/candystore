@@ -16,7 +16,7 @@ services:
   back:
     container_name: candystore-back
     env_file: .env
-    image: candystore-back
+    image: candystore-back:dev
     build: ./backend
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:${BACKEND_PORT}/status"]
@@ -34,10 +34,12 @@ services:
     command: lein ring server-headless ${BACKEND_PORT}
   
   front:
-    container_name: candystore-front
+    container_name: candystore-front-dev
     env_file: .env
-    image: candystore-front
-    build: ./frontend
+    image: candystore-front:dev
+    build: 
+      context: ./frontend
+      dockerfile: Dockerfile-dev
     depends_on:
       - back
       - db
@@ -49,7 +51,7 @@ services:
     environment:
       - NODE_ENV=development
       - CHOKIDAR_USEPOLLING=true
-    command: npm start
+    command: start-dev
 
 volumes:
   postgres:

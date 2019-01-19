@@ -1,0 +1,10 @@
+{
+    "editor.tabSize": 2,
+
+    "clojureVSCode.autoStartNRepl": false,
+    "clojureVSCode.formatOnSave": false,
+
+    "search.exclude": {
+      "**/node_modules": true,
+  },
+}
