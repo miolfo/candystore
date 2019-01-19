@@ -7,6 +7,14 @@ const apiPort = process.env.REACT_APP_API_PORT || '3333';
 const apiEndpoint = '/users/all';
 
 class UserSelect extends Component {
+
+  constructor() {
+    super();
+    this.state = {
+      selectedUserId: -1
+    }
+  }
+
   render() {
     if(this.props.isLoading) {
       return (
@@ -15,14 +23,14 @@ class UserSelect extends Component {
         </div>
       )
     }
-    console.log(this.props.data.users);
 
     var users = [];
     if(this.props.data.users) {
       this.props.data.users.forEach(user => {
+        var btnClass = this.state.selectedUserId === user.id? "nes-btn is-primary" : "nes-btn";
         users.push(
-          <div>
-            <button type="button" key={user.id} className="nes-btn">
+          <div key={user.id}>
+            <button type="button" className={btnClass} onClick={this.userSelected.bind(this)} id={user.id}>
               {user.fname} {user.lname} ({user.balance}€)
             </button>
           </div>
@@ -37,6 +45,19 @@ class UserSelect extends Component {
         {users}
       </div>
     )
+  }
+
+  userSelected(e) {
+    var userId = e.target.id;
+    if(this.state.selectedUserId === Number(userId)) {
+      this.setState({
+        selectedUserId: -1
+      });
+    } else {
+      this.setState({
+        selectedUserId: Number(userId)
+      });
+    }
   }
 }
 
