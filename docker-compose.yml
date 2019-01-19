@@ -16,6 +16,7 @@ services:
   back:
     container_name: candystore-back
     env_file: .env
+    image: candystore-back
     build: ./backend
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:${BACKEND_PORT}/status"]
@@ -35,6 +36,7 @@ services:
   front:
     container_name: candystore-front
     env_file: .env
+    image: candystore-front
     build: ./front-sample
     depends_on:
       - back
