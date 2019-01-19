@@ -24,12 +24,12 @@ export default class Transaction extends Component {
     let body = {};
     if(this.state.product_id !== "") {
       body = {
-        user_id: parseInt(this.state.user_id),
-        product_id: parseInt(this.state.product_id)
+        user_id: parseInt(this.state.user_id, 10),
+        product_id: parseInt(this.state.product_id, 10)
       }
     } else {
       body = {
-        user_id: parseInt(this.state.user_id),
+        user_id: parseInt(this.state.user_id, 10),
         amount: parseFloat(this.state.amount)
       }
     }
