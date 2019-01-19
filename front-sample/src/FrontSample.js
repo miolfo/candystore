@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
-import ProductList from './components/ProductList.js';
-import UserInfo from './components//UserInfo.js';
-import AllUserInfo from './components//AllUserInfo.js';
-import Transaction from './components/Transaction';
+import ProductList from './components-sample/ProductList.js';
+import UserInfo from './components-sample/UserInfo.js';
+import AllUserInfo from './components-sample//AllUserInfo.js';
+import Transaction from './components-sample/Transaction';
 
 class FrontSample extends Component {
   render() {
