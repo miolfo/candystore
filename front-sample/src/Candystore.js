@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class Candystore extends Component {
   render() {
     return(
-      <div>
+      <div className="nes-container">
         Main app comes here
       </div>
     )
