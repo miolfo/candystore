@@ -53,10 +53,12 @@ class UserSelect extends Component {
       this.setState({
         selectedUserId: -1
       });
+      this.props.userSelected(-1);
     } else {
       this.setState({
         selectedUserId: Number(userId)
       });
+      this.props.userSelected(Number(userId));
     }
   }
 }
