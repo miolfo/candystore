@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
+import UserSelect from './components/UserSelect';
 
 class Candystore extends Component {
   render() {
     return(
-      <div className="nes-container">
-        Main app comes here
-      </div>
+        <UserSelect/>
     )
   }
 }
