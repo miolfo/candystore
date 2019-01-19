@@ -12,7 +12,9 @@
                  [log4j "1.2.17"]
                  [org.clojure/tools.logging "0.4.1"]]
   :plugins [[lein-ring "0.9.7"]]
-  :ring {:handler candystore.handler/app}
+  :ring {:handler candystore.handler/app
+         :nrepl {:start? true
+                 :port 6666}}
   :profiles
   {:dev {:dependencies [[javax.servlet/servlet-api "2.5"]
                         [ring/ring-mock "0.3.0"]]}})
