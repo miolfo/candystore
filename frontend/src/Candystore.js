@@ -18,7 +18,7 @@ class Candystore extends Component {
       <div className="col-37">
         <UserSelect userSelected={this.userSelected.bind(this)}/>
         {this.state.selectedUserId !== -1? <ProductSelect onProductSelect={this.productSelected.bind(this)}/> : undefined}
-        {this.state.selectedUserId !== -1? <Basket selectedProducts={this.state.products}/> : undefined}
+        {this.state.selectedUserId !== -1? <Basket selectedProducts={this.state.products} onProductDelete={this.productDeleted.bind(this)}/> : undefined}
       </div>
     )
   }
@@ -34,6 +34,15 @@ class Candystore extends Component {
     this.setState({
       selectedUserId: userId
     });
+  }
+
+  productDeleted(product) {
+    const prods = this.state.products;
+    const index = prods.indexOf(product);
+    prods.splice(index, 1);
+    this.setState({
+      products: prods
+    })
   }
 }
 

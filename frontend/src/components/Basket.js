@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import '../css/common.css';
 
 class Basket extends Component {
 
@@ -13,6 +14,9 @@ class Basket extends Component {
         products.push(
           <div key={index}>
             {product.name}
+            <button className="nes-btn is-error delete-product" onClick={() => this.deleteProduct(product)}>
+              <i className="nes-icon close is-small"></i>
+            </button>
           </div>
         )
       });
@@ -31,6 +35,10 @@ class Basket extends Component {
         </button>
       </div>
     )
+  }
+
+  deleteProduct(product) {
+    this.props.onProductDelete(product);
   }
 }
 
