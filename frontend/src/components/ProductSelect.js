@@ -95,7 +95,7 @@ class ProductSelect extends Component {
 
   onCustomInput(e) {
     const value = e.target.value;
-    const customProduct = {id: -1, price: Number(value), description: "custom product", name: "custom product"};
+    const customProduct = {id: -1, price: Number(value), description: "custom product", name: "custom " + value + "€"};
     if(value !== undefined && value !== "") {
       this.setState({
         selectedProduct: customProduct

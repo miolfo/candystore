@@ -18,12 +18,17 @@ class Basket extends Component {
       });
     }
 
+    let buttonStyle = "nes-btn is-success";
+    if(sum === 0) buttonStyle += " is-disabled";
     return (
       <div className="nes-container is-dark with-title">
         <p className="title">
           Basket {sum}€
         </p>
         {products}
+        <button type="button" className={buttonStyle} disabled={sum === 0}>
+          OSTAA
+        </button>
       </div>
     )
   }
