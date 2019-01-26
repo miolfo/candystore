@@ -10,10 +10,12 @@ class ProductSelect extends Component {
   constructor() {
     super();
     this.state = {
-      customInputtedValue: false,
-      selectedProductId: -1
+      selectedProduct: undefined
     }
+
+    this.productSelected = this.productSelected.bind(this);
   }
+
   render() {
     if(this.props.isLoading) {
       return(
@@ -33,12 +35,13 @@ class ProductSelect extends Component {
         if(this.state.customInputtedValue) {
           btnClass += "is-disabled "
         }
-        if(this.state.selectedProductId === product.id) {
+        if(this.state.selectedProduct && this.state.selectedProduct.id === product.id) {
           btnClass += "is-primary ";
         }
+        let productObj = {id: product.id, name: product.name, description: product.description, price: product.price}
         products.push(
           <div key={product.id}>
-            <button type="button" id={product.id} className={btnClass} disabled={this.state.customInputtedValue} onClick={this.productSelected.bind(this)}>
+            <button type="button" id={product.id} className={btnClass} disabled={this.state.customInputtedValue} onClick={() => this.productSelected(productObj)}>
               {product.name} ({product.price}€)
             </button>
           </div>
@@ -47,7 +50,7 @@ class ProductSelect extends Component {
     }
     let okClass;
     let okDisabled;
-    if(this.state.selectedProductId !== -1 || this.state.customInputtedValue) {
+    if(this.state.selectedProduct !== undefined) {
       okClass = "nes-btn"
       okDisabled = false;
     } else {
@@ -55,7 +58,7 @@ class ProductSelect extends Component {
       okDisabled = true;
     }
     return(
-      <div className="nes-container is-dark with-title col-30">
+      <div className="nes-container is-dark with-title">
         <p className="title">
           Product selection
         </p>
@@ -64,33 +67,45 @@ class ProductSelect extends Component {
           <label htmlFor="custom_amount_input">
             Custom amount
           </label>
-          <input type="number" id="custom_amount_input" className="nes-input" onInput={this.onCustomInput.bind(this)} disabled={this.state.selectedProductId !== -1}/>
+          <input type="number" id="custom_amount_input" className="nes-input" onInput={this.onCustomInput.bind(this)} disabled={this.state.selectedProduct !== undefined && this.state.selectedProduct.id !== -1}/>
         </div>
-        <button className={okClass} disabled={okDisabled}>
+        <button className={okClass} disabled={okDisabled} onClick={this.okClicked.bind(this)}>
           OK
         </button>
       </div>
     )
   }
 
-  productSelected(e) {
-    const productId = e.target.id;
-    if(this.state.selectedProductId === Number(productId)) {
+  okClicked() {
+    this.props.onProductSelect(this.state.selectedProduct);
+  }
+
+  productSelected(product) {
+    const productId = product.id;
+    if(this.state.selectedProduct && this.state.selectedProduct.id === Number(productId)) {
       this.setState({
-        selectedProductId: -1
+        selectedProduct: undefined
       });
     } else {
       this.setState({
-        selectedProductId: Number(productId)
+        selectedProduct: product
       });
     }
   }
 
   onCustomInput(e) {
     const value = e.target.value;
-    this.setState({
-      customInputtedValue: value !== undefined && value !== ""
-    });
+    const customProduct = {id: -1, price: Number(value), description: "custom product", name: "custom " + value + "€"};
+    if(value !== undefined && value !== "") {
+      this.setState({
+        selectedProduct: customProduct
+      });
+    } else {
+      this.setState({
+        selectedProduct: undefined
+      });
+    }
+
   }
 }
 

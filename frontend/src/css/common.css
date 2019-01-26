@@ -1,3 +1,11 @@
 .col-30 {
-    width: 30%
+    width: 30em
+}
+
+.col-37 {
+    width: 37em
+}
+
+.delete-product {
+    padding: 2px 5px
 }
