@@ -51,7 +51,7 @@ services:
     environment:
       - NODE_ENV=development
       - CHOKIDAR_USEPOLLING=true
-    command: start-dev
+    command: start
 
 volumes:
   postgres:
