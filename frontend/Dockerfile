@@ -1,4 +1,4 @@
-FROM node:9.11.1
+FROM node:10.15.0
 
 RUN mkdir -p /app
 WORKDIR /app
@@ -8,6 +8,6 @@ ENV PATH /app/node_modules/.bin:$PATH
 
 COPY package.json /app/package.json
 RUN npm install
-RUN npm install react-scripts@1.1.4 -g
+RUN npm install react-scripts@2.1.3 -g
 
 CMD ["npm", "start"]
