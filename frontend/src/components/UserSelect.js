@@ -38,7 +38,7 @@ class UserSelect extends Component {
       });
     }
     return(
-      <div className="nes-container is-dark with-title col-30">
+      <div className="nes-container is-dark with-title">
         <p className="title">
           Select user
         </p>
