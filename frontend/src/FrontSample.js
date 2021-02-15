@@ -11,7 +11,7 @@ class FrontSample extends Component {
       <div className="App">
         <header className="App-header">
           <img src="https://i.imgur.com/rHmypWY.jpg" className="App-logo" alt="logo" />
-          <h1 className="App-title">Candystore v0.1</h1>
+          <h1 className="App-title">Candystore v0.2</h1>
         </header>
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
