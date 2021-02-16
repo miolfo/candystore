@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { withFetching } from './WithFetching.js';
 
 const apiUrl = process.env.REACT_APP_API_URL || 'http://back';
-const apiPort = process.env.REACT_APP_API_PORT || '3333';
+const apiPort = process.env.REACT_APP_API_PORT || '3000';
 const apiEndpoint = '/products/all';
 
 class ProductSelect extends Component {
