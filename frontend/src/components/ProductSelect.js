@@ -30,6 +30,7 @@ class ProductSelect extends Component {
 
     let products = [];
     if(this.props.data.products) {
+      console.log(this.props.data.products);
       this.props.data.products.forEach(product => {
         let btnClass = "nes-btn ";
         if(this.state.customInputtedValue) {
