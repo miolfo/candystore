@@ -1,6 +1,8 @@
-#!/usr/bin/bash
+#!/bin/bash
 # This script will run init_tables script to database
 # if psql container doesnt run it by itself
+#
+# deprecated, not really needed
 set -e
 
 . ../.env

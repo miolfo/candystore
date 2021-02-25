@@ -1,11 +1,10 @@
-version: "3"
+version: "3.8"
 
 services:
   db:
     container_name: candystore-db
     env_file: .env
     image: postgres:10.4
-    container_name: psql
     volumes:
       - ./scripts/sql/0-init_tables.sql:/docker-entrypoint-initdb.d/1-tables.sql
       - ./scripts/sql/mockdata:/mockdata
@@ -16,7 +15,7 @@ services:
   back:
     container_name: candystore-back
     env_file: .env
-    image: candystore-back
+    image: candystore-back:0.2
     build: ./backend
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:${BACKEND_PORT}/status"]
@@ -36,7 +35,7 @@ services:
   front:
     container_name: candystore-front
     env_file: .env
-    image: candystore-front
+    image: candystore-front:0.2
     build: ./frontend
     depends_on:
       - back
