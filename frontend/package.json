@@ -1,6 +1,6 @@
 {
-  "name": "front-sample",
-  "version": "0.2.0",
+  "name": "candystore",
+  "version": "0.2.1",
   "private": true,
   "dependencies": {
     "nes.css": "^1.0.0",
@@ -14,6 +14,7 @@
   },
   "scripts": {
     "start-dev": "npm install && react-scripts start",
+    "analyze": "npm build && source-map-explorer build/static/js/*.js --html > source-map-explorer.html",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
@@ -35,6 +36,7 @@
     "fibers": "^5.0.0",
     "node-sass": "^5.0.0",
     "sass": "^1.32.7",
+    "source-map-explorer": "^2.5.2",
     "ts-node": "^9.1.1",
     "type-fest": "^0.13.1",
     "typescript": "^3.9.9",
