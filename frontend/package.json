@@ -30,6 +30,8 @@
     "@types/react-router-dom": "^5.1.7",
     "bufferutil": "^4.0.3",
     "canvas": "^2.6.1",
+    "dotenv": "^8.2.0",
+    "dotenv-expand": "^5.1.0",
     "fibers": "^5.0.0",
     "node-sass": "^5.0.0",
     "sass": "^1.32.7",
