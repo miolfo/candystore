@@ -1,10 +1,11 @@
 {
-    "editor.tabSize": 2,
-
-    "clojureVSCode.autoStartNRepl": false,
-    "clojureVSCode.formatOnSave": false,
-
-    "search.exclude": {
-      "**/node_modules": true,
+  "editor.tabSize": 2,
+  "files.eol": "\n",
+  "clojureVSCode.autoStartNRepl": false,
+  "clojureVSCode.formatOnSave": false,
+  "search.exclude": {
+    "**/node_modules": true,
   },
+  "files.autoSave": "afterDelay",
+  "files.autoSaveDelay": 10000
 }
