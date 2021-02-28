@@ -14,7 +14,7 @@
   },
   "scripts": {
     "start-dev": "npm install && react-scripts start",
-    "analyze": "npm build && source-map-explorer build/static/js/*.js --html > source-map-explorer.html",
+    "analyze": "npm run-script build && source-map-explorer build/static/js/*.js --html > source-map-explorer.html",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
