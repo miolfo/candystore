@@ -22,18 +22,18 @@ export const withFetching = (url, query) => (Comp) =>
           Accept: 'application/json'
         }
       })
-      .then(response => {
-        if (response.ok) {
+        .then(response => {
+          if (response.ok) {
             return response.json();
-        } else {
+          } else {
             throw new Error('Error while requesting data...');
-        }
-      })
-      .then(data => this.setState({ data, isLoading: false }))
-      .catch(error => this.setState({ error, isLoading: false }));
+          }
+        })
+        .then(data => this.setState({ data, isLoading: false }))
+        .catch(error => this.setState({ error, isLoading: false }));
     }
 
     render() {
-      return <Comp { ...this.props } { ...this.state } />
+      return <Comp {...this.props} {...this.state} />
     }
-}
+  }

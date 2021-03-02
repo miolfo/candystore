@@ -46,9 +46,7 @@ class Basket extends Component {
   }
 
   buyProducts() {
-    console.log("KAKHAA", apiUrl, apiPort, apiEndpoint);
-    console.log(this.props.selectedProducts);
-    console.log(this.props.selectedUserId);
+
     let reqBody = [];
 
     this.props.selectedProducts.forEach(product => {
@@ -58,9 +56,6 @@ class Basket extends Component {
       })
     });
 
-    console.log(reqBody);
-    // this.props.onProductCheckout();
-    // fetch(url + query, {
     fetch(apiUrl + ':' + apiPort + apiEndpoint, {
       method: 'POST',
       headers: {

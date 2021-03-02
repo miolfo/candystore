@@ -45,8 +45,6 @@ class Candystore extends Component {
     const prods = this.state.products;
     const index = prods.indexOf(product);
     prods.splice(index, 1);
-    console.log("hermanni " + prods.length);
-    console.log(prods);
     this.setState({
       products: prods
     });
@@ -54,8 +52,6 @@ class Candystore extends Component {
 
   productsBought() {
     const prods = this.state.products;
-    console.log("KIKKEL" + prods.length);
-    console.log(prods);
     this.setState({ products: [] });
   }
 }

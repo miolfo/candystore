@@ -45,6 +45,4 @@
     (POST "/bulk" request (map add-transaction (apply vector (:body request))))
     ;; (POST "/bulk" request (map println (vector (:body request))))
     ;; (POST "/bulk" request (println (:body request)))
-    ;;(POST "/bulk" request (json/write-str (apply vector (cs-db/get-transactions-all cs-db/db))))
-    ;; (GET "/all" []  (json/write-str {:products (apply vector (cs-db/get-products-all cs-db/db))}))
     (POST "/" request (add-transaction (:body request)))))
