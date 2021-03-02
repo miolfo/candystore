@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import '../css/common.css';
 
+const apiUrl = process.env.REACT_APP_API_URL || 'http://back';
+const apiPort = process.env.REACT_APP_API_PORT || '3000';
+const apiEndpoint = '/transactions/bulk';
+
 class Basket extends Component {
 
   render() {
@@ -8,7 +12,7 @@ class Basket extends Component {
     let products = []
     let sum = 0;
 
-    if(this.props.selectedProducts){
+    if (this.props.selectedProducts) {
       this.props.selectedProducts.forEach((product, index) => {
         sum += product.price;
         products.push(
@@ -23,14 +27,14 @@ class Basket extends Component {
     }
 
     let buttonStyle = "nes-btn is-success";
-    if(sum === 0) buttonStyle += " is-disabled";
+    if (sum === 0) buttonStyle += " is-disabled";
     return (
       <div className="nes-container is-dark with-title">
         <p className="title">
           Basket {sum}€
         </p>
         {products}
-        <button type="button" className={buttonStyle} disabled={sum === 0}>
+        <button type="button" className={buttonStyle} disabled={sum === 0} onClick={() => this.buyProducts()}>
           OSTAA
         </button>
       </div>
@@ -39,6 +43,37 @@ class Basket extends Component {
 
   deleteProduct(product) {
     this.props.onProductDelete(product);
+  }
+
+  buyProducts() {
+
+    let reqBody = [];
+
+    this.props.selectedProducts.forEach(product => {
+      reqBody.push({
+        "user_id": this.props.selectedUserId,
+        "product_id": product.id
+      })
+    });
+
+    fetch(apiUrl + ':' + apiPort + apiEndpoint, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        "Content-Type": 'application/json'
+      },
+      body: JSON.stringify(reqBody)
+    })
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error('Error while requesting data...');
+        }
+      })
+      .then(data => console.log(data))
+      .catch(error => console.log(error)
+      );
   }
 }
 

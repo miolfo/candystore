@@ -25,6 +25,7 @@
 
 (defn wrap-json-content-type [handler]
   (fn [request]
+    (println "wrap-json-content-type handler got" (:request-method request) "request body:" (:body request)) ;DEBUG println for the body of request
     (let [response (handler request)]
       (-> response
           (assoc-in [:headers "Content-Type"] "application/json")))))
@@ -36,5 +37,5 @@
                  :access-control-allow-methods [:get :put :post]
                  :access-control-allow-headers ["Content-Type"])
        (wrap-json-content-type)
-       (wrap-json-body)
+       (wrap-json-body {:keywords? true})
        (wrap-defaults api-defaults))))

@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { withFetching } from './WithFetching.js';
 
 const apiUrl = process.env.REACT_APP_API_URL || 'http://back';
@@ -17,8 +17,8 @@ class ProductSelect extends Component {
   }
 
   render() {
-    if(this.props.isLoading) {
-      return(
+    if (this.props.isLoading) {
+      return (
         <div className="nes-container is-dark with-title col-30">
           <p className="title">
             Product selection
@@ -29,16 +29,16 @@ class ProductSelect extends Component {
     }
 
     let products = [];
-    if(this.props.data.products) {
+    if (this.props.data.products) {
       this.props.data.products.forEach(product => {
         let btnClass = "nes-btn ";
-        if(this.state.customInputtedValue) {
+        if (this.state.customInputtedValue) {
           btnClass += "is-disabled "
         }
-        if(this.state.selectedProduct && this.state.selectedProduct.id === product.id) {
+        if (this.state.selectedProduct && this.state.selectedProduct.id === product.id) {
           btnClass += "is-primary ";
         }
-        let productObj = {id: product.id, name: product.name, description: product.description, price: product.price}
+        let productObj = { id: product.id, name: product.name, description: product.description, price: product.price }
         products.push(
           <div key={product.id}>
             <button type="button" id={product.id} className={btnClass} disabled={this.state.customInputtedValue} onClick={() => this.productSelected(productObj)}>
@@ -50,14 +50,14 @@ class ProductSelect extends Component {
     }
     let okClass;
     let okDisabled;
-    if(this.state.selectedProduct !== undefined) {
+    if (this.state.selectedProduct !== undefined) {
       okClass = "nes-btn"
       okDisabled = false;
     } else {
       okClass = "nes-btn is-disabled"
       okDisabled = true;
     }
-    return(
+    return (
       <div className="nes-container is-dark with-title">
         <p className="title">
           Product selection
@@ -67,7 +67,7 @@ class ProductSelect extends Component {
           <label htmlFor="custom_amount_input">
             Custom amount
           </label>
-          <input type="number" id="custom_amount_input" className="nes-input" onInput={this.onCustomInput.bind(this)} disabled={this.state.selectedProduct !== undefined && this.state.selectedProduct.id !== -1}/>
+          <input type="number" id="custom_amount_input" className="nes-input" onInput={this.onCustomInput.bind(this)} disabled={this.state.selectedProduct !== undefined && this.state.selectedProduct.id !== -1} />
         </div>
         <button className={okClass} disabled={okDisabled} onClick={this.okClicked.bind(this)}>
           OK
@@ -82,7 +82,7 @@ class ProductSelect extends Component {
 
   productSelected(product) {
     const productId = product.id;
-    if(this.state.selectedProduct && this.state.selectedProduct.id === Number(productId)) {
+    if (this.state.selectedProduct && this.state.selectedProduct.id === Number(productId)) {
       this.setState({
         selectedProduct: undefined
       });
@@ -95,8 +95,8 @@ class ProductSelect extends Component {
 
   onCustomInput(e) {
     const value = e.target.value;
-    const customProduct = {id: -1, price: Number(value), description: "custom product", name: "custom " + value + "€"};
-    if(value !== undefined && value !== "") {
+    const customProduct = { id: -1, price: Number(value), description: "custom product", name: "custom " + value + "€" };
+    if (value !== undefined && value !== "") {
       this.setState({
         selectedProduct: customProduct
       });
