@@ -14,11 +14,16 @@ class Candystore extends Component {
   }
 
   render() {
-    return(
+    return (
       <div className="col-37">
-        <UserSelect userSelected={this.userSelected.bind(this)}/>
-        {this.state.selectedUserId !== -1? <ProductSelect onProductSelect={this.productSelected.bind(this)}/> : undefined}
-        {this.state.selectedUserId !== -1? <Basket selectedProducts={this.state.products} onProductDelete={this.productDeleted.bind(this)}/> : undefined}
+        <UserSelect userSelected={this.userSelected.bind(this)} />
+        {this.state.selectedUserId !== -1 ? <ProductSelect onProductSelect={this.productSelected.bind(this)} /> : undefined}
+        {this.state.selectedUserId !== -1 ? <Basket
+          selectedUserId={this.state.selectedUserId}
+          selectedProducts={this.state.products}
+          onProductDelete={this.productDeleted.bind(this)}
+          onProductCheckout={this.productsBought.bind(this)}
+        /> : undefined}
       </div>
     )
   }
@@ -26,8 +31,8 @@ class Candystore extends Component {
   productSelected(product) {
     this.setState(prev => ({
       // ... notation is spread 
-      products: [...prev.products, product]
-    }))
+      products: [ ...prev.products, product ]
+    }));
   }
 
   userSelected(userId) {
@@ -40,9 +45,18 @@ class Candystore extends Component {
     const prods = this.state.products;
     const index = prods.indexOf(product);
     prods.splice(index, 1);
+    console.log("hermanni " + prods.length);
+    console.log(prods);
     this.setState({
       products: prods
-    })
+    });
+  }
+
+  productsBought() {
+    const prods = this.state.products;
+    console.log("KIKKEL" + prods.length);
+    console.log(prods);
+    this.setState({ products: [] });
   }
 }
 

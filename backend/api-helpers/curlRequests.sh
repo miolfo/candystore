@@ -3,6 +3,7 @@
 # do POST request with correct content type header (application/json) and data payload from
 # reqbulk.json which has list of json objects
 #curl -v -X POST -H "Content-Type: application/json" -d @reqbulk.json localhost:3333/transactions/bulk
+#curl -v -X POST -H "Content-Type: application/json" --data-raw '[{"user_id":12,"product_id":15}]'  localhost:3333/transactions/bulk
 
 # same for single transaction
 #curl -v -X POST -H "Content-Type: application/json" -d @req.json localhost:3333/transactions/
