@@ -9,14 +9,15 @@ class Candystore extends Component {
     super();
     this.state = {
       selectedUserId: -1,
-      products: []
+      products: [],
+      userRefresh: false
     }
   }
 
   render() {
     return (
       <div className="col-37">
-        <UserSelect userSelected={this.userSelected.bind(this)} />
+        <UserSelect refreshFunc={this.refreshUsers.bind(this)} refresh={this.state.userRefresh} userSelected={this.userSelected.bind(this)} />
         {this.state.selectedUserId !== -1 ? <ProductSelect onProductSelect={this.productSelected.bind(this)} /> : undefined}
         {this.state.selectedUserId !== -1 ? <Basket
           selectedUserId={this.state.selectedUserId}
@@ -52,8 +53,12 @@ class Candystore extends Component {
 
   productsBought() {
     const prods = this.state.products;
+    this.refreshUsers();
     this.setState({ products: [] });
   }
+
+  refreshUsers = () =>
+    this.setState({ userRefresh: !this.state.userRefresh });
 }
 
 export default Candystore;

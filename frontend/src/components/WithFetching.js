@@ -13,6 +13,36 @@ export const withFetching = (url, query) => (Comp) =>
       };
     }
 
+    componentWillReceiveProps(props) {
+      const { refresh } = this.props;
+      // console.log(refresh);
+      // console.log(props.refresh);
+      if (props.refresh !== refresh) {
+        this.refreshData()
+      }
+    }
+
+    refreshData() {
+      this.setState({ isLoading: true });
+      this.setState({ data: {} });
+
+      fetch(url + query, {
+        method: 'GET',
+        headers: {
+          Accept: 'application/json'
+        }
+      })
+        .then(response => {
+          if (response.ok) {
+            return response.json();
+          } else {
+            throw new Error('Error while requesting data...');
+          }
+        })
+        .then(data => this.setState({ data, isLoading: false }))
+        .catch(error => this.setState({ error, isLoading: false }));
+    }
+
     componentDidMount() {
       this.setState({ isLoading: true });
 

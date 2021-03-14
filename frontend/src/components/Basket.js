@@ -74,6 +74,7 @@ class Basket extends Component {
       .then(data => console.log(data))
       .catch(error => console.log(error)
       );
+    this.props.onProductCheckout();
   }
 }
 
