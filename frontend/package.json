@@ -33,7 +33,7 @@
     "dotenv": "^8.2.0",
     "dotenv-expand": "^5.1.0",
     "fibers": "^5.0.0",
-    "node-sass": "^5.0.0",
+    "node-sass": "^7.0.0",
     "sass": "^1.32.7",
     "ts-node": "^9.1.1",
     "type-fest": "^0.13.1",
