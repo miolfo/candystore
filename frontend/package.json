@@ -8,7 +8,7 @@
     "react-dom": "^16.7.0",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "^4.0.2",
+    "react-scripts": "^5.0.1",
     "react-table": "^6.8.6",
     "webpack-plugin-serve": "^1.2.1"
   },
